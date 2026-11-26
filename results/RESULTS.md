@@ -187,9 +187,22 @@ smallest-VaR portfolio out-of-sample in this run; MV and MC respectively are.
 A dedicated check of `results/exp5_summary.json` shows the realized sample
 (3249 of the paper's 3330 dates, 130 of 131 windows, one ticker — the Nikkei
 proxy JPXN — sourced from Yahoo rather than the primary feed) differs from
-the paper's; whether this data difference, rather than an estimation-window
-or aggregation error, produces the out-of-sample ranking miss was not
-isolated by a dedicated test, so the cause is reported as not identified.
+the paper's. Two implementation hypotheses for the ranking miss were tested
+by code inspection and ruled out: (1) out-of-sample weights in
+`src/backtest.py::run_rolling_backtest` are solved once per window from the
+training slice only (`train_frame`) and then applied unchanged to the
+following month's returns (`test_frame.to_numpy() @ w_vec`), matching
+Sec. IV.B's "weights estimated in the training window are held fixed"; no
+re-estimation or look-ahead was found. (2) the Eq. 11 aggregation in
+`src/portfolio.py::aggregate_weights` sums `alpha(s) * beta(q) * w(q,s)`
+with `alpha` and `beta` each asserted to sum to one, so the aggregated
+weight vector inherits the budget constraint correctly from the per-(s,q)
+solutions. With both code paths confirmed to match Eq. 9/Eq. 11 and the
+rolling-window description, the remaining candidate cause is the realized
+data (substituted ticker, shorter sample, one fewer window) rather than the
+estimation or aggregation logic; this was not isolated further, so the exact
+contribution of the data difference to the ranking miss is reported as not
+identified.
 
 ## exp_6 — Robustness of MMFC to scale, fluctuation-order and preference choices
 
