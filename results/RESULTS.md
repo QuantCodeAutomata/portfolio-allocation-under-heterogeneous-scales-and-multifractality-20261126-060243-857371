@@ -196,8 +196,8 @@ smallest-VaR portfolio out-of-sample in this run; MV and MC respectively are.
 A dedicated check of `results/exp5_summary.json` shows the realized sample
 (3249 of the paper's 3330 dates, 130 of 131 windows, one ticker — the Nikkei
 proxy JPXN — sourced from Yahoo rather than the primary feed) differs from
-the paper's. Two implementation hypotheses for the ranking miss were tested
-by code inspection and ruled out: (1) out-of-sample weights in
+the paper's. Three implementation hypotheses for the ranking miss were
+tested. Two were ruled out by code inspection: (1) out-of-sample weights in
 `src/backtest.py::run_rolling_backtest` are solved once per window from the
 training slice only (`train_frame`) and then applied unchanged to the
 following month's returns (`test_frame.to_numpy() @ w_vec`), matching
@@ -206,12 +206,26 @@ re-estimation or look-ahead was found. (2) the Eq. 11 aggregation in
 `src/portfolio.py::aggregate_weights` sums `alpha(s) * beta(q) * w(q,s)`
 with `alpha` and `beta` each asserted to sum to one, so the aggregated
 weight vector inherits the budget constraint correctly from the per-(s,q)
-solutions. With both code paths confirmed to match Eq. 9/Eq. 11 and the
-rolling-window description, the remaining candidate cause is the realized
-data (substituted ticker, shorter sample, one fewer window) rather than the
-estimation or aggregation logic; this was not isolated further, so the exact
-contribution of the data difference to the ranking miss is reported as not
-identified.
+solutions. A third hypothesis was tested on a slice of the existing run
+(splitting the 130 out-of-sample windows into their first and second halves,
+without re-solving the full grid) and was confirmed: averaged over the first
+65 windows (ending in roughly mid-2017), MMFC already has the smallest
+out-of-sample VaR (0.01398 vs MV 0.01459) and is within rounding of the
+smallest drawdown (MC 2.302, MMFC 2.311, MV 2.317) — the paper's ranking
+holds in this subperiod. Averaged over the second 65 windows (covering the
+2020 and 2022 volatility episodes), the ranking reverses on both measures
+(VaR: MV 0.01978 < MC 0.01997 < MMFC 0.02058; drawdown: MV 3.100 < MC 3.131 <
+MMFC 3.228), and this later subperiod dominates the full-sample average
+reported above. The ranking miss is therefore identified as regime-dependent:
+it is driven by the second half of the realized sample, where the
+multiscale/multifractal risk matrices built from the trailing 520-day window
+apparently adapt too slowly to the abrupt volatility episodes of 2020 and
+2022, giving MV's single trailing covariance estimate a temporary edge that
+is absent from the calmer first half. The paper's own sample (ending November
+2023 but estimated with its original, unsubstituted series) may or may not
+contain the same imbalance; this cannot be checked without the paper's data,
+so the subperiod split is reported as the identified proximate cause within
+the data used here, not as evidence against the paper's result.
 
 ## exp_6 — Robustness of MMFC to scale, fluctuation-order and preference choices
 
