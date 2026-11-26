@@ -1,0 +1,24 @@
+{
+  "n_common_dates": 3249,
+  "n_common_dates_paper": 3330,
+  "date_range": [
+    "2011-01-04",
+    "2023-11-30"
+  ],
+  "assets": [
+    "XAU",
+    "NIKKEI",
+    "SP500",
+    "WTI"
+  ],
+  "non_massive_source": {
+    "JPXN": "yahoo"
+  },
+  "failed_tickers": {},
+  "multifractal_h_decreasing_full_range": {
+    "NIKKEI": false,
+    "SP500": false,
+    "WTI": false,
+    "XAU": false
+  }
+}

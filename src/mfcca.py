@@ -133,5 +133,9 @@ def generalized_hurst_exponent(
             log_s.append(np.log(s))
             log_f.append(np.log(f_q))
     log_s, log_f = np.array(log_s), np.array(log_f)
+    if len(log_s) < 2:
+        # Sign cancellation in the MFCCA sum can make F^q(s) <= 0 at some
+        # scales for negative q; too few usable scales leave h(q) undefined.
+        return float("nan"), np.exp(log_s), np.exp(log_f)
     slope, _ = np.polyfit(log_s, log_f, 1)
     return float(slope), np.exp(log_s), np.exp(log_f)

@@ -1,0 +1,21 @@
+{
+  "n_common_dates": 3249,
+  "n_common_dates_paper": 3330,
+  "date_range": [
+    "2011-01-04",
+    "2023-11-30"
+  ],
+  "n_windows_executed": 130,
+  "n_windows_paper": 131,
+  "non_massive_source": {
+    "JPXN": "yahoo"
+  },
+  "best_portfolio_by_metric": {
+    "in_sample_drawdown_smallest_on_average": "MC",
+    "in_sample_var_smallest_on_average": "MMFC",
+    "in_sample_es_smallest_on_average": "MMFC",
+    "out_of_sample_drawdown_smallest_on_average": "MV",
+    "out_of_sample_var_smallest_on_average": "MC",
+    "out_of_sample_es_smallest_on_average": "MC"
+  }
+}
