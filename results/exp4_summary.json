@@ -16,9 +16,9 @@
   },
   "failed_tickers": {},
   "multifractal_h_decreasing_full_range": {
-    "NIKKEI": false,
-    "SP500": false,
+    "NIKKEI": true,
+    "SP500": true,
     "WTI": false,
-    "XAU": false
+    "XAU": true
   }
 }

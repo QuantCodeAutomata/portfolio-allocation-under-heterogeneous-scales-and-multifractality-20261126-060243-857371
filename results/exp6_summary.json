@@ -1,0 +1,20 @@
+{
+  "n_specifications": 11,
+  "required_return_annual_pct": 1.0,
+  "n_windows_paper": 131,
+  "non_massive_source": {
+    "JPXN": "yahoo"
+  },
+  "paper_stated_exceptions": {
+    "beta_small_q": {
+      "mmfc_in_sample_drawdown": 2.559995609256597,
+      "mv_in_sample_drawdown": 2.5446944359763153,
+      "mmfc_exceeds_mv": true
+    },
+    "Q_small_1_2": {
+      "mmfc_in_sample_drawdown": 2.5754900610841633,
+      "mv_in_sample_drawdown": 2.5446944359763153,
+      "mmfc_exceeds_mv": true
+    }
+  }
+}

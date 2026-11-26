@@ -127,7 +127,12 @@ def main() -> None:
         hurst_table[hurst_table["range"] == "full"]
         .pivot(index="asset", columns="q", values="h_q")
     )
-    is_decreasing = multifractal_check.apply(lambda row: row.is_monotonic_decreasing, axis=1)
+    # q=0 is excluded from the monotonicity check: F(q=0,s) uses the log-average
+    # form (MFCCA/MFDCCA singularity at q=0) and is not comparable on the same
+    # h(q) scale, so it is NaN in the pivoted table.
+    is_decreasing = multifractal_check.apply(
+        lambda row: row.dropna().is_monotonic_decreasing, axis=1
+    )
     print("h(q) monotonically decreasing in q (full range) per asset:\n", is_decreasing)
 
     pairs = list(itertools.combinations(assets, 2))
