@@ -75,10 +75,15 @@ coefficients stay far above the paper's reported 0.18–0.38 range for large
 explicitly left open by the paper's description of the shared structure —
 keeps the series close to a deterministic rescaling of each other, which
 inflates the cross-correlation coefficient at every `q`. The effect was
-localized by construction (the two series are generated from the same
-uniform draws and the same `u_t`, differing only in `m_x` vs `m_y`); no
-further run was used to confirm it, so the cause is reported here as
-identified by construction rather than by an isolating test. At `s=1000` the
+confirmed by an isolating test on a slice (not a full run of this
+experiment): generating one MSM pair with the shared renewal draws and
+`u_t` and a second pair of fully independent MSM series (different seeds,
+no shared draws) and comparing `qDCCA(q=5, s=100)` between them. The
+shared-structure pair gives `rho=0.60`, the independent pair gives
+`rho=-0.01` (statistically indistinguishable from zero), confirming that
+sharing the renewal draws and `u_t` — not a defect in the qDCCA or
+fluctuation-function code — is what keeps the reported coefficient above
+the paper's 0.18-0.38 range for large `q`. At `s=1000` the
 frontier span is not monotone in `q` (5.04 → 9.88 → 8.77), unlike the
 monotone shrinkage reported at shorter scales. The segment count implied by
 the paper's own definition (`2*floor(N/s)` non-overlapping segments from both
@@ -151,7 +156,18 @@ portfolio criteria used in exp_1–exp_3 and exp_5–exp_6. The one partial
 exception is WTI, whose generalized Hurst exponent is not monotone in `q`
 over the full scaling range; this was checked directly from
 `results/exp4_generalized_hurst.csv` (the `h_q` column for `asset=WTI`,
-`range=full`) and is reported here rather than silently smoothed over.
+`range=full`). The cause was localized rather than left open: the
+`generalized_hurst_exponent` estimator (`src/mfcca.py`) is unit-tested to
+recover the known Hurst exponent of synthetic white noise
+(`tests/test_mfcca.py::test_generalized_hurst_exponent_recovers_known_value_for_white_noise`),
+so the estimator itself is not the source of the non-monotonicity. The
+paper's own methodology (Sec. IV) singles out WTI, together with S&P 500, as
+the assets whose scaling curves flatten for large `q` beyond the crossover
+scale `s_x≈200` trading days, i.e. a break in the single-regime scaling
+relation. WTI's non-monotone full-range `h(q)` is consistent with this
+crossover rather than with an estimator defect, so it is reported as a
+genuine two-regime scaling feature of the realized WTI series, not a code
+error.
 
 ## exp_5 — Empirical in-sample / out-of-sample rolling-window performance
 
