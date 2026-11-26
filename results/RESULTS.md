@@ -80,7 +80,16 @@ uniform draws and the same `u_t`, differing only in `m_x` vs `m_y`); no
 further run was used to confirm it, so the cause is reported here as
 identified by construction rather than by an isolating test. At `s=1000` the
 frontier span is not monotone in `q` (5.04 → 9.88 → 8.77), unlike the
-monotone shrinkage reported at shorter scales.
+monotone shrinkage reported at shorter scales. The segment count implied by
+the paper's own definition (`2*floor(N/s)` non-overlapping segments from both
+ends, methodology step 3) is 1638 at `s=10`, 162 at `s=100`, but only 16 at
+`s=1000` for `N=8192`; with 16 segments the fluctuation function
+`F^q_{XY}(s)` of a single realization is estimated from very few local
+covariances, so its value is noisy across `q` even though each one is
+computed correctly. This identifies the small-segment-count regime at
+`s=1000`, not an error in the fluctuation-function or frontier code, as the
+most likely source of the non-monotone span; it was not re-tested by
+averaging over further realizations.
 
 ## exp_3 — Combined multiscale and multifractal Monte Carlo performance
 
