@@ -1,0 +1,136 @@
+{
+  "n_assets": 2,
+  "series_length": 8192,
+  "qdcca_mfcca_q2_scale_min": 10,
+  "qdcca_mfcca_q2_scale_max": 1000,
+  "qdcca_mfcca_q2_at_smallest_scale": -0.021816796561197633,
+  "qdcca_mfcca_q2_at_largest_scale": 0.7234298451356811,
+  "frontier_endpoints": [
+    {
+      "algorithm": "MFCCA",
+      "s": 10,
+      "q": 0.5,
+      "risk_reduction_rate_first": -30.39174041415308,
+      "risk_reduction_rate_last": 0.0
+    },
+    {
+      "algorithm": "MFCCA",
+      "s": 10,
+      "q": 2.0,
+      "risk_reduction_rate_first": -30.02520973352023,
+      "risk_reduction_rate_last": 0.0
+    },
+    {
+      "algorithm": "MFCCA",
+      "s": 10,
+      "q": 5.0,
+      "risk_reduction_rate_first": -28.533328479796335,
+      "risk_reduction_rate_last": 0.0
+    },
+    {
+      "algorithm": "MFCCA",
+      "s": 100,
+      "q": 0.5,
+      "risk_reduction_rate_first": -6.0787972672196,
+      "risk_reduction_rate_last": 0.0
+    },
+    {
+      "algorithm": "MFCCA",
+      "s": 100,
+      "q": 2.0,
+      "risk_reduction_rate_first": -6.787224581582711,
+      "risk_reduction_rate_last": 0.0
+    },
+    {
+      "algorithm": "MFCCA",
+      "s": 100,
+      "q": 5.0,
+      "risk_reduction_rate_first": -3.6588356470269825,
+      "risk_reduction_rate_last": 0.0
+    },
+    {
+      "algorithm": "MFCCA",
+      "s": 1000,
+      "q": 0.5,
+      "risk_reduction_rate_first": 0.0,
+      "risk_reduction_rate_last": 0.0
+    },
+    {
+      "algorithm": "MFCCA",
+      "s": 1000,
+      "q": 2.0,
+      "risk_reduction_rate_first": 0.0,
+      "risk_reduction_rate_last": 0.0
+    },
+    {
+      "algorithm": "MFCCA",
+      "s": 1000,
+      "q": 5.0,
+      "risk_reduction_rate_first": -0.09203700554131528,
+      "risk_reduction_rate_last": 0.0
+    },
+    {
+      "algorithm": "MFDCCA",
+      "s": 10,
+      "q": 0.5,
+      "risk_reduction_rate_first": -2.5059319287227786,
+      "risk_reduction_rate_last": 0.0
+    },
+    {
+      "algorithm": "MFDCCA",
+      "s": 10,
+      "q": 2.0,
+      "risk_reduction_rate_first": -9.394812687534552,
+      "risk_reduction_rate_last": 0.0
+    },
+    {
+      "algorithm": "MFDCCA",
+      "s": 10,
+      "q": 5.0,
+      "risk_reduction_rate_first": -19.11517463966449,
+      "risk_reduction_rate_last": 0.0
+    },
+    {
+      "algorithm": "MFDCCA",
+      "s": 100,
+      "q": 0.5,
+      "risk_reduction_rate_first": -0.2255131446243794,
+      "risk_reduction_rate_last": 0.0
+    },
+    {
+      "algorithm": "MFDCCA",
+      "s": 100,
+      "q": 2.0,
+      "risk_reduction_rate_first": -0.9261016534730563,
+      "risk_reduction_rate_last": 0.0
+    },
+    {
+      "algorithm": "MFDCCA",
+      "s": 100,
+      "q": 5.0,
+      "risk_reduction_rate_first": -1.2357422171985086,
+      "risk_reduction_rate_last": 0.0
+    },
+    {
+      "algorithm": "MFDCCA",
+      "s": 1000,
+      "q": 0.5,
+      "risk_reduction_rate_first": 0.0,
+      "risk_reduction_rate_last": 0.0
+    },
+    {
+      "algorithm": "MFDCCA",
+      "s": 1000,
+      "q": 2.0,
+      "risk_reduction_rate_first": 0.0,
+      "risk_reduction_rate_last": 0.0
+    },
+    {
+      "algorithm": "MFDCCA",
+      "s": 1000,
+      "q": 5.0,
+      "risk_reduction_rate_first": 0.0,
+      "risk_reduction_rate_last": 0.0
+    }
+  ]
+}
